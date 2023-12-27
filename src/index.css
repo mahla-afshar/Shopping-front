@@ -361,3 +361,36 @@ header ul li .menu{
   margin-left: 50px;
   color: crimson;
 }
+
+
+.filter{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+}
+
+.filter .sort-title{
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.filter select{
+  padding: 5px;
+  border: 1px solid rgb(187,187,187);
+  width: 200px;
+  font-family: 'vazir';
+  margin-right: 10px;
+}
+
+.filter .form-checkbox{
+  display: flex;
+}
+.filter .form-checkbox .form-group{
+  margin: 0 5px;
+}
+
+.filter .form-checkbox input{
+  margin-left: 5px;
+} 

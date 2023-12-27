@@ -1,15 +1,59 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import { Link } from 'react-router-dom';
 import {DataContext} from './Context';
 import formatCurrency from '../util';
+import Filter from "./Filter";
 
 function Products() {
      const value = useContext(DataContext);
      const [products, setProducts] = value.products;
      const addCart = value.addCart;
+    
+    const [sort,setSort] =useState("asc");
+    const [brand ,setBrand] =useState("") ;
+
+    const sortProducts =(event) =>{
+     setSort(event.target.value);
+     if(sort==="asc"){
+          setProducts(products.sort((a,b) => (a.id < b.id ? 1 :-1 )));
+     }
+     if(sort === "desc"){
+          setProducts(products.sort((a,b) => (a.id > b.id ? 1 :-1 )));
+     }
+
+ }
+
+ const filterProducts =(event) =>{
+     if(event.target.value===""){
+         setBrand(event.target.value);
+         
+         setProducts(products)
+       
+     }
+     else{
+         setBrand(event.target.value);
+      
+         setProducts(products.filter((product) => product.availableBrand.indexOf(event.target.value) >=0 ))
+       
+     }
+ }
+
      
 
   return (
+     <div className="container">
+          <div className='mainfilter'>
+          <Filter  
+                        count ={products.length}
+                        sortProducts={sortProducts}
+                        brand={brand}
+                        filterProducts={filterProducts}
+
+                        />
+
+
+          </div>
+     
     <div className="products">
          {
               products.map(product => (
@@ -28,6 +72,7 @@ function Products() {
                </div>
               ))
          }
+    </div>
     </div>
   )
 }
