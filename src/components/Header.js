@@ -32,7 +32,8 @@ function Header() {
               <li><Link to="/products">Products</Link></li>
               <li><Link to="/">About Us</Link></li>
               <li><Link to="/"> Contact</Link></li>
-              <li><Link to="/">Login / register</Link></li>
+              <li><Link to="/Register">Register</Link></li>
+              <li><Link to="/Login">Login </Link></li>
                <li><img src={Close} width="30" className="menu" alt="" onClick={toggleMenu} /></li>
          </ul>
          <div className="logo">
