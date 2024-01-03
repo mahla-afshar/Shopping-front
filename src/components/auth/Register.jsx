@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import './auth.css';
-
+import axios from 'axios';
 
 
 
@@ -10,7 +10,7 @@ const Register = () => {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
 
-  const handSubmit =(e) =>{
+  const handSubmit = async(e) =>{
     e.preventDefault();
     const data ={
       name,
@@ -18,6 +18,18 @@ const Register = () => {
       password
     }
     console.log(data)
+
+  await  axios.post("http://localhost:8000/spi/register", data,{
+    headers:{
+      
+    }
+  })
+  .then(res =>{
+    console.log(res);
+  })
+  .catch(err =>{
+    console.log(err);
+  })
   }
 
 
