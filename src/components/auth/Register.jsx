@@ -9,6 +9,7 @@ const Register = () => {
   const [name,setName] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
+  const [error,setError] =useState([]);
 
   const handSubmit = async(e) =>{
     e.preventDefault();
@@ -21,11 +22,17 @@ const Register = () => {
 
   await  axios.post("http://localhost:8000/spi/register", data,{
     headers:{
-      
+       "Content-Type" : "application/json" ,
+       "Accept" : "application/json"
     }
   })
   .then(res =>{
-    console.log(res);
+    if(res.data.status ===200){
+      console.log(res.data.message)
+
+    }else{
+      setError(res.data.validatim_error)
+    }
   })
   .catch(err =>{
     console.log(err);
