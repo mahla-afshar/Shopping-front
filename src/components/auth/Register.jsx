@@ -1,6 +1,7 @@
 import React , {useState} from 'react';
 import './auth.css';
 import axios from 'axios';
+import swal from 'sweetalert2';
 
 
 
@@ -28,7 +29,14 @@ const Register = () => {
   })
   .then(res =>{
     if(res.data.status ===200){
-      console.log(res.data.message)
+      swal.fire({
+        icon:"success",
+        title:"congragulation",
+        text:res.data.message,
+        showConfirmButton:true,
+        confirmButtonText:"تایید",
+          timer:5000,
+      })
 
     }else{
       setError(res.data.validatim_error)
@@ -61,6 +69,9 @@ const Register = () => {
                     
                    
                   />
+                  {
+                    error && <small className='text-danger mt-2' >{error.name}</small>
+                  }
                  
                 </div>
                 <div className='form-group mt-3'>
@@ -72,6 +83,9 @@ const Register = () => {
                     onChange={(e) => setEmail(e.target.value)}
                
                   />
+      {
+                    error && <small className='text-danger mt-2' >{error.email}</small>
+                  }
                  
                 </div>
                 <div className='form-group mt-3' >
@@ -83,6 +97,9 @@ const Register = () => {
                     onChange={(e) => setPassword(e.target.value)}
                    
                   />
+                        {
+                    error && <small className='text-danger mt-2' >{error.password}</small>
+                  }
                
                 </div>
                 <div className='form-group mt-4'>
